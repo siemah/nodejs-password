@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-password",
+  "version": "0.1.0",
+  "description": "nodejs library to hash and verify password like hash_password and verify_password on PHP",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "build": "tsc -p ." 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siemah/nodejs-password.git"
+  },
+  "keywords": [
+    "nodejs",
+    "password",
+    "nodejs-password",
+    "hash_password",
+    "verify_password"
+  ],
+  "author": "siemah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siemah/nodejs-password/issues"
+  },
+  "homepage": "https://github.com/siemah/nodejs-password#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^24.9.1",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "typescript": "^3.7.5"
+  }
+}
