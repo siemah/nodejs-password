@@ -5,3 +5,4 @@ dist/
 # files
 yarn.lock
 .npmignore
+*.todo
