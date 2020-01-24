@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc -p ." 
+    "build": "tsc -p ."
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@types/jest": "^24.9.1",
+    "@types/node": "^13.5.0",
     "babel-jest": "^25.1.0",
     "jest": "^25.1.0",
     "typescript": "^3.7.5"
