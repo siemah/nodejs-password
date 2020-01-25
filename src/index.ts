@@ -6,10 +6,11 @@ interface PasswordHashOptions {
 const PHOD = { length: 64 };
 
 /**
- * 
+ * hash a password
  * @param password 
  * @param salt 
  * @param options 
+ * @version 1.0.0
  */
 export const passwordHash = (password: string, salt: string, options: PasswordHashOptions = PHOD): Promise<string | Error> => {
   return new Promise((resolve, reject) => {
@@ -22,7 +23,7 @@ export const passwordHash = (password: string, salt: string, options: PasswordHa
       reject(new Error(`Salt is empty`));
     if (options.length < 1)
       reject(new Error(`Length must be greater than 0`));
-      
+
     scrypt(password, salt, options.length, (err, buffer) => {
       if (err) reject(err);
 
@@ -33,4 +34,18 @@ export const passwordHash = (password: string, salt: string, options: PasswordHa
     });
 
   });
+}
+
+/**
+ * check if password match hash value
+ * @param password password to check
+ * @param hash hashed value to compare in most cases hashed password saved on some storage like DB..
+ * @param salt salt used to hash the origin value in hash param
+ * @version 1.0.0
+ */
+export const passwordVerify = (password: string, hash: string, salt: string): Promise<boolean> => {
+  return new Promise(async (resolve) => {
+    let _hash = await passwordHash(password, salt);
+    resolve(_hash === hash);
+  })
 }

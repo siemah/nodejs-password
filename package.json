@@ -1,8 +1,10 @@
 {
   "name": "nodejs-password",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "nodejs library to hash and verify password like hash_password and verify_password on PHP",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib",
+  "private": false,
   "scripts": {
     "test": "jest --watch",
     "build": "tsc -p ."

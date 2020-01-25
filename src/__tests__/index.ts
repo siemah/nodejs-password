@@ -1,17 +1,18 @@
-import { passwordHash } from '../';
+import { passwordHash, passwordVerify } from '../';
+
+let password: string,
+  salt: string,
+  passwordErrorMessage: string,
+  saltErrorMessage: string;
+
+beforeAll(() => {
+  password = 'password';
+  salt = 'salt';
+  passwordErrorMessage = 'Password is empty';
+  saltErrorMessage = 'Salt is empty';
+});
 
 describe('passwordHash', () => {
-  let password: string, 
-      salt: string,
-      passwordErrorMessage: string,
-      saltErrorMessage: string;
-
-  beforeAll(() => {
-    password             = 'password';
-    salt                 = 'salt';
-    passwordErrorMessage = 'Password is empty';
-    saltErrorMessage     = 'Salt is empty';
-  });
 
   test('should handle errors', () => {
     expect.assertions(2);
@@ -20,8 +21,30 @@ describe('passwordHash', () => {
   });
 
   test('should resolve a string', async () => {
-    const hashedPassword = await passwordHash(password, salt, { length: 9});
+    const hashedPassword = await passwordHash(password, salt, { length: 9 });
     expect(typeof hashedPassword).toBe('string');
   });
 
 });
+
+describe('passwordVerify', () => {
+
+  let hash: string;
+  beforeAll(async () => {
+    hash = await passwordHash(password, salt) as string;
+  });
+
+  test('should resolve boolean', async () => {
+    const isPasswordMatch = await passwordVerify(password, hash, salt);
+    expect(typeof isPasswordMatch).toBe('boolean');
+  });
+
+  test('should verify if password match the hashed value or note', async () => {
+    let isPasswordMatch = await passwordVerify(password, hash, salt);
+    expect(isPasswordMatch).toBeTruthy();
+
+    isPasswordMatch = await passwordVerify('other password', hash, salt);
+    expect(isPasswordMatch).toBeFalsy();
+  });
+
+})

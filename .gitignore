@@ -1,6 +1,9 @@
 # directories
 node_modules/
+src/
 dist/
+lib/
+examples/
 
 # files
 yarn.lock
