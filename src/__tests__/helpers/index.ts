@@ -10,8 +10,7 @@ describe('generateSalt', () => {
   });
   it('generate a salt via returning a promise resolve as string', async () => {
     const p = await generateSalt(0);
-    console.log(p)
     expect(typeof p).toBe('string');
   });
   
-})
+});
