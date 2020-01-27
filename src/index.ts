@@ -43,9 +43,9 @@ export const passwordHash = (password: string, salt: string, options: PasswordHa
  * @param salt salt used to hash the origin value in hash param
  * @version 1.0.0
  */
-export const passwordVerify = (password: string, hash: string, salt: string): Promise<boolean> => {
+export const passwordVerify = (password: string, hash: string, salt: string, options: PasswordHashOptions = PHOD): Promise<boolean> => {
   return new Promise(async (resolve) => {
-    let _hash = await passwordHash(password, salt);
+    let _hash = await passwordHash(password, salt, options);
     resolve(_hash === hash);
   })
 }

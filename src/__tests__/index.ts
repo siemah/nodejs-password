@@ -47,4 +47,14 @@ describe('passwordVerify', () => {
     expect(isPasswordMatch).toBeFalsy();
   });
 
+  test('accept the 4th params', async () => {
+    const opts = { length: 9 };
+    try {
+      const hashedPassword = await passwordHash(password, salt, opts) as string;
+      expect(passwordVerify(password, hashedPassword, salt, opts)).resolves.toBe(true);
+      expect(passwordVerify(password, hashedPassword, salt)).resolves.toBe(false);
+    } catch (e) {}
+  });
+
+
 })
