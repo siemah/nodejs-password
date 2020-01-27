@@ -15,7 +15,7 @@ const PHOD = { length: 64 };
 export const passwordHash = (password: string, salt: string, options: PasswordHashOptions = PHOD): Promise<string | Error> => {
   return new Promise((resolve, reject) => {
 
-    const _type = 'hex';
+    const _type = 'base64';
 
     if (password.length < 1)
       reject(new Error(`Password is empty`));
