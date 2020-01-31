@@ -146,6 +146,30 @@ password_hash accept 2 param:
 
 Note: password_hash is different from passwordHash
 
+### Checking match without salt
+
+To verify if the password match the hashed value without salt(because it handled internaly) use password_verify(see below):
+
+```javascript
+const { password_verify, } = require('nodejs-password');
+
+password_verify(password, hash)
+  .then(isMatch => {
+      // see if password match or not
+    })
+    .catch(error => console.log(error));
+```
+password_hash accept 2 param:
+- password[required]: password to check if match or not
+- hash[required]: hashed value to compare with
+- options[optional]: an object of length and algo props where
+  - options.length: is the length of bytes to use for hashing
+  - options.algo: is cryptographic hash functions where one of HASH_ALGO.SHA256 or HASH_ALGO.SHA512
+
+Note: password_verify is different from passwordVerify.
+If you pass options params to password_hash it must pass to password_verify to work correctly.
+HASH_ALGO imported from helpers.
+
 ## A Note on Rounds
 
 A note about the cost. When you are hashing your data the module will go through a series of rounds to give you a secure hash. The value you submit there is not just the number of rounds that the module will go through to hash your data. The module will use the value you enter and go through `2^rounds` iterations of processing.
