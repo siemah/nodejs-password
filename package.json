@@ -1,6 +1,6 @@
 {
   "name": "nodejs-password",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "nodejs library to hash and verify password like hash_password and verify_password on PHP",
   "main": "lib/index.js",
   "types": "lib",

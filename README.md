@@ -146,7 +146,7 @@ password_hash accept 2 param:
 
 Note: password_hash is different from passwordHash
 
-### Checking match without salt
+### Check matching without salt
 
 To verify if the password match the hashed value without salt(because it handled internaly) use password_verify(see below):
 
