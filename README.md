@@ -45,7 +45,7 @@ const password = 'user-password';
 passwordHash function accept 3 params:
 - password to hash
 - salt used to hash the password saved in DB
-- the last params is an object contain the length proprety(number of charactres to extract)
+- the last params is an object contain the length proprety(number of characters to extract)
 
 Technique 1 (hash password):
 
@@ -86,7 +86,7 @@ try {
 ```
 
 generateSalt helper function accept 2 params:
-- Firsth the number of charactres to generate (for more solid salt at least specify 16)
+- Firsth the number of characters to generate (for more solid salt at least specify 16)
 - Second present algorithem to use sha256/sha512(see example below) default value is sha256
 
 ```javascript
@@ -115,7 +115,7 @@ passwordVerify accept 4 params:
 - password to verify
 - hashed password (saved earlier in DB or in other storage..)
 - salt used to hash the saved password
-- the last params is an object contain the length proprety(number of charactres to extract)
+- the last params is an object contain the length proprety(number of characters to extract)
 
 Note: when use the 3th param of passwordHash then it must use it with passwordVerify too
 ```javascript
@@ -124,6 +124,27 @@ const hash = await passwordHash(password, salt, opts);
 const samePassword = await passwordVerify(password, hash, salt, opts);// return true
 ```
 
+### Hashing password without salt(generated internaly)
+
+In this case nodejs-password package generate salt internaly and the same for both functions password_hash and password_verify, otherwise, nodejs-password package handle the part of salt 
+
+```javascript
+const { password_hash, } = require('nodejs-password');
+// your are not need salt
+const password = 'user-password';
+password_hash(password)
+  .then(hash => {
+      // Store hash in your password DB.
+    })
+    .catch(error => console.log(error));
+```
+password_hash accept 2 param:
+- password[required]: data to hash
+- options[optional]: an object of length and algo props where
+  - options.length: is the length of bytes to use for hashing
+  - options.algo: is cryptographic hash functions where one of HASH_ALGO.SHA256 or HASH_ALGO.SHA512
+
+Note: password_hash is different from passwordHash
 
 ## A Note on Rounds
 
