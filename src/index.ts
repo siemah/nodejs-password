@@ -1,4 +1,5 @@
-import { scrypt, } from 'crypto';
+import { scrypt, randomFill, createHash, HexBase64Latin1Encoding, } from 'crypto';
+import { generateSalt, HASH_ALGO } from './helpers';
 
 interface PasswordHashOptions {
   length: number;
@@ -48,4 +49,42 @@ export const passwordVerify = (password: string, hash: string, salt: string, opt
     let _hash = await passwordHash(password, salt, options);
     resolve(_hash === hash);
   })
+}
+
+export interface Password_HashOptions extends PasswordHashOptions {
+  algo: HASH_ALGO;
+}
+const P_HOD = {algo: HASH_ALGO.SHA256, length: 64};
+/**
+ * hash a string passed as param
+ * @param password 
+ * @returns {Promise<string>} 
+ */
+export const password_hash = (password: string, options: Password_HashOptions=P_HOD): Promise<string | Error> => {
+  return new Promise(async (resolve, reject) => {
+
+    if (typeof password !== 'string')
+      reject(new Error('password_hash accept first param to be a string'));
+
+    const _buffer: Buffer = Buffer.alloc(password.length, password);
+    const _type: string = 'base64';
+
+    let _salt: string = _buffer.toString(_type);
+    let _hash = createHash(options.algo);
+    let _result: string;
+
+    _hash.update(_salt);
+    _salt = _hash.digest(_type as HexBase64Latin1Encoding);
+
+    scrypt(password, _salt, options.length, (err, buffer) => {
+      if (err) reject(err);
+
+      _result = buffer.toString(_type);
+      _result = _result.replace(/=*$/, '');
+      _result = '$2y$' + _result;
+
+      resolve(_result);
+    });
+
+  });
 }

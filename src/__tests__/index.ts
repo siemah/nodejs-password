@@ -1,4 +1,5 @@
-import { passwordHash, passwordVerify } from '../';
+import { passwordHash, passwordVerify, password_hash } from '../';
+import { HASH_ALGO } from '../helpers';
 
 let password: string,
   salt: string,
@@ -53,8 +54,39 @@ describe('passwordVerify', () => {
       const hashedPassword = await passwordHash(password, salt, opts) as string;
       expect(passwordVerify(password, hashedPassword, salt, opts)).resolves.toBe(true);
       expect(passwordVerify(password, hashedPassword, salt)).resolves.toBe(false);
-    } catch (e) {}
+    } catch (e) { }
   });
 
 
+});
+
+describe('password_hash', () => {
+
+  test('should work without salt param', () => {
+    expect(password_hash(password)).resolves.toBeTruthy();
+  });
+
+  test('should resolved hash be of type string', async () => {
+    const hash = await password_hash(password);
+    expect(typeof hash).toEqual('string');
+  });
+
+  test('should work with different options like algo and length', async () => {
+    try {
+      const hash = await password_hash(password);
+      const hashSha512 = await password_hash(password, {
+        algo: HASH_ALGO.SHA512,
+        length: 70,
+      });
+      const hashLength = await password_hash(password, {
+        algo: HASH_ALGO.SHA256,
+        length: 70,
+      });
+
+      expect(hash === hashSha512).toBeFalsy();
+      expect(hash === hashLength).toBeFalsy();
+    } catch (error) {}
+  });
+
 })
+
