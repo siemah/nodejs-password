@@ -1,4 +1,4 @@
-import { passwordHash, passwordVerify, password_hash } from '../';
+import { passwordHash, passwordVerify, password_hash, password_verify, } from '../';
 import { HASH_ALGO } from '../helpers';
 
 let password: string,
@@ -85,8 +85,54 @@ describe('password_hash', () => {
 
       expect(hash === hashSha512).toBeFalsy();
       expect(hash === hashLength).toBeFalsy();
-    } catch (error) {}
+    } catch (error) { }
   });
 
-})
+});
+
+
+describe('password_verify', () => {
+
+  let hash: string, isPasswordMatch: boolean;
+  beforeAll(async () => {
+    try {
+      hash = await password_hash(password) as string;
+      isPasswordMatch = await password_verify(password, hash);
+    } catch (error) { }
+  });
+
+  test('should resolve a boolean', async () => {
+    expect(typeof isPasswordMatch).toEqual('boolean');
+  });
+
+  test('should password match a hash', () => {
+    expect(isPasswordMatch).toBeTruthy();
+  });
+
+  test('should password not match a hash', async () => {
+    let isPasswordMatch = await password_verify('other-password', hash);
+    expect(isPasswordMatch).toBe(false);
+  });
+
+  test('should verify if password match hash value with options params', async () => {
+    const opts = {
+      length: 70,
+      algo: HASH_ALGO.SHA512,
+    }
+    const hash = await password_hash(password, opts) as string;
+    const isPasswordMatch = await password_verify(password, hash, opts);
+    expect(isPasswordMatch).toEqual(true);
+  });
+
+  test('should pass the same options value to both password_hash and password_verify', async () => {
+    const opts = {
+      length: 70,
+      algo: HASH_ALGO.SHA512,
+    }
+    const hash = await password_hash(password, opts) as string;
+    const isPasswordMatch = await password_verify(password, hash);
+    expect(isPasswordMatch).toEqual(false);
+  });
+
+});
 

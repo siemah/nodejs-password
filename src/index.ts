@@ -54,13 +54,13 @@ export const passwordVerify = (password: string, hash: string, salt: string, opt
 export interface Password_HashOptions extends PasswordHashOptions {
   algo: HASH_ALGO;
 }
-const P_HOD = {algo: HASH_ALGO.SHA256, length: 64};
+const P_HOD = { algo: HASH_ALGO.SHA256, length: 64 };
 /**
  * hash a string passed as param
  * @param password 
  * @returns {Promise<string>} 
  */
-export const password_hash = (password: string, options: Password_HashOptions=P_HOD): Promise<string | Error> => {
+export const password_hash = (password: string, options: Password_HashOptions = P_HOD): Promise<string | Error> => {
   return new Promise(async (resolve, reject) => {
 
     if (typeof password !== 'string')
@@ -86,5 +86,17 @@ export const password_hash = (password: string, options: Password_HashOptions=P_
       resolve(_result);
     });
 
+  });
+}
+
+export const password_verify = (password: string, hash: string, options: Password_HashOptions = P_HOD): Promise<boolean> => {
+  return new Promise(async (resolve) => {
+    try {
+      let _hash = await password_hash(password, options);
+      resolve(_hash === hash);
+    } catch (error) {
+      resolve(false);
+      throw new Error(error);
+    }
   });
 }
