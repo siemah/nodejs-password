@@ -3,9 +3,10 @@ node_modules/
 src/
 dist/
 lib/
-examples/
+
 
 # files
 yarn.lock
 .npmignore
 *.todo
+examples/package.json
