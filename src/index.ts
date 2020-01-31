@@ -89,6 +89,14 @@ export const password_hash = (password: string, options: Password_HashOptions = 
   });
 }
 
+/**
+ * compare a password with hashed value
+ * @param password 
+ * @param hash hashed password to compare with
+ * @param options list of optional options
+ * @returns {Promise<boolean>} true if match otherwise false
+ * @throws error in case something went wrong
+ */
 export const password_verify = (password: string, hash: string, options: Password_HashOptions = P_HOD): Promise<boolean> => {
   return new Promise(async (resolve) => {
     try {
