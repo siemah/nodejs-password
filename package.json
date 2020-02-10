@@ -1,7 +1,7 @@
 {
   "name": "nodejs-password",
-  "version": "1.0.0",
-  "description": "nodejs library to hash and verify password like hash_password and verify_password on PHP",
+  "version": "1.0.1",
+  "description": "nodejs library for hashing and verifying password like password_hash and password_verify on PHP or Pbkdf2PasswordEncoder on Spring Security(Java)",
   "main": "lib/index.js",
   "types": "lib",
   "private": false,
@@ -17,8 +17,10 @@
     "nodejs",
     "password",
     "nodejs-password",
-    "hash_password",
-    "verify_password"
+    "password_hash",
+    "passwordHash",
+    "password_verify",
+    "passwordVerify"
   ],
   "author": "siemah",
   "license": "ISC",

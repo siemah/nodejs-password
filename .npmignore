@@ -1,11 +1,11 @@
 # directories
 node_modules/
 src/
-dist/
-lib/
 
 
 # files
 yarn.lock
 *.todo
 examples/package.json
+tsconfig.json
+babel.config.js
