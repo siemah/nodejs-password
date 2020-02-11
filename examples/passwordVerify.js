@@ -10,7 +10,7 @@ const { generateSalt, HASH_ALGO, } = require('nodejs-password/lib/helpers');
 
   passwordHash(password, salt, opts)
     .then(hash => {
-      passwordVerify('password', hash, salt, opts)
+      passwordVerify(password, hash, salt, opts)
         .then(isMatch => {
           console.log(
             `Password ${password} is match: ${isMatch}`

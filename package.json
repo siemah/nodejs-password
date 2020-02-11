@@ -1,6 +1,6 @@
 {
   "name": "nodejs-password",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "nodejs library for hashing and verifying password like password_hash and password_verify on PHP or Pbkdf2PasswordEncoder on Spring Security(Java)",
   "main": "lib/index.js",
   "types": "lib",
