@@ -1,6 +1,6 @@
 # nodejs-password
 
-A library tools help you to hash passwords, based on javascrypt promises not callback convention like most nodejs modules and functions.
+A library tools help you to hash passwords, based on javascript promises not callback convention like most nodejs modules and functions.
 
 ## If You Are Submitting Bugs or Issues
 
