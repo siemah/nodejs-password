@@ -1,13 +1,22 @@
 {
   "name": "nodejs-password",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "nodejs library for hashing and verifying password like password_hash and password_verify on PHP or Pbkdf2PasswordEncoder on Spring Security(Java)",
-  "main": "lib/index.js",
-  "types": "lib",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/types/index.d.js",
+  "files": [
+    "lib"
+  ],
   "private": false,
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc -p ."
+    "build": "npm run build:cjs && npm run build:esm && npm run build:types",
+    "build:cjs": "npm run clean cjs && tsc -p config/tsconfig.cjs.json",
+    "build:esm": "npm run clean esm && tsc -p config/tsconfig.esm.json",
+    "build:types": "npm run clean types && tsc -p config/tsconfig.typings.json",
+    "clean": "node cleanup.mjs",
+    "package": "npm run build && npm pack"
   },
   "repository": {
     "type": "git",
@@ -29,13 +38,17 @@
   },
   "homepage": "https://github.com/siemah/nodejs-password#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@babel/preset-typescript": "^7.8.3",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^13.5.0",
-    "babel-jest": "^25.1.0",
-    "jest": "^25.1.0",
-    "typescript": "^3.7.5"
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.25",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "ts-jest": "^27.1.4",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3"
   }
 }

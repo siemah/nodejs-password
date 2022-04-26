@@ -1,11 +1,17 @@
 # directories
 node_modules/
 src/
+config/
+examples/
 
 
 # files
 yarn.lock
 *.todo
 examples/package.json
-tsconfig.json
+*.json
 babel.config.js
+pnpm-lock.yaml
+*.config.js
+.eslintrc
+.eslintignore

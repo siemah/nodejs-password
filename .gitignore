@@ -1,6 +1,5 @@
 # directories
 node_modules/
-src/
 dist/
 lib/
 
@@ -9,3 +8,4 @@ lib/
 yarn.lock
 *.todo
 examples/package.json
+pnpm-lock.yaml
