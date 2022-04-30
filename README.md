@@ -17,7 +17,6 @@ As should be the case with any security tool, this library should be scrutinized
 - Development
 - Typescript
 - Jest for testing
-- Babel
 
 ## Install via NPM
 
