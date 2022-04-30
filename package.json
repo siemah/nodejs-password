@@ -1,6 +1,6 @@
 {
-  "name": "node-password",
-  "version": "2.0.0",
+  "name": "node-password-lite",
+  "version": "1.0.0",
   "description": "Node library for hashing and verifying password like password_hash and password_verify on PHP or Pbkdf2PasswordEncoder on Spring Security(Java)",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
