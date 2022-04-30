@@ -37,7 +37,7 @@ yarn add nodejs-password
 import { passwordHash, passwordVerify } from 'nodejs-password'
 // generating salt it possible via helpers function see salt section below
 const salt = 'salt'
-const password = 'user-password'
+const password = 'user-password-lite'
 ```
 
 ### To hash a password:
@@ -64,7 +64,7 @@ try {
 Technique 2 (hash password by generating salt):
 
 ```typescript
-import { generateSalt } from 'nodejs-password')
+import { generateSalt } from 'nodejs-password-lite')
 
 // not forget to surround with sync function to use await keywords
 try {
@@ -82,7 +82,7 @@ generateSalt helper function accept 2 params:
 - Second present algorithem to use sha256/sha512(see example below) default value is sha256
 
 ```javascript
-import { generateSalt, HashAlgoProps } from 'nodejs-password'
+import { generateSalt, HashAlgoProps } from 'nodejs-password-lite'
 
 // not forget to surround with sync function to use await keywords
 try {
