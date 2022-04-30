@@ -1,4 +1,4 @@
-# nodejs-password
+# node-password-lite
 
 A library tools help you to hash passwords, based on javascript promises not callback convention like most nodejs modules and functions.
 
@@ -21,19 +21,19 @@ As should be the case with any security tool, this library should be scrutinized
 ## Install via NPM
 
 ```
-npm install nodejs-password-lite
+npm install node-password-lite
 ```
 
 ## Install via YARN
 
 ```
-yarn add nodejs-password-lite
+yarn add node-password-lite
 ```
 
 ## Usage
 
 ```typescript
-import { passwordHash, passwordVerify } from 'nodejs-password-lite'
+import { passwordHash, passwordVerify } from 'node-password-lite'
 // generating salt it possible via helpers function see salt section below
 const salt = 'salt'
 const password = 'user-password'
@@ -63,7 +63,7 @@ try {
 Technique 2 (hash password by generating salt):
 
 ```typescript
-import { generateSalt } from 'nodejs-password-lite')
+import { generateSalt } from 'node-password-lite')
 
 // not forget to surround with sync function to use await keywords
 try {
@@ -81,7 +81,7 @@ generateSalt helper function accept 2 params:
 - Second present algorithem to use sha256/sha512(see example below) default value is sha256
 
 ```javascript
-import { generateSalt, HashAlgoProps } from 'nodejs-password-lite'
+import { generateSalt, HashAlgoProps } from 'node-password-lite'
 
 // not forget to surround with sync function to use await keywords
 try {
