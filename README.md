@@ -21,22 +21,22 @@ As should be the case with any security tool, this library should be scrutinized
 ## Install via NPM
 
 ```
-npm install nodejs-password
+npm install nodejs-password-lite
 ```
 
 ## Install via YARN
 
 ```
-yarn add nodejs-password
+yarn add nodejs-password-lite
 ```
 
 ## Usage
 
 ```typescript
-import { passwordHash, passwordVerify } from 'nodejs-password'
+import { passwordHash, passwordVerify } from 'nodejs-password-lite'
 // generating salt it possible via helpers function see salt section below
 const salt = 'salt'
-const password = 'user-password-lite'
+const password = 'user-password'
 ```
 
 ### To hash a password:
@@ -134,8 +134,3 @@ npm test
 yarn
 yarn test
 ```
-
-## Contributors
-
-- [Siemah][siemah]
-- [Km.Van][kmvan]
